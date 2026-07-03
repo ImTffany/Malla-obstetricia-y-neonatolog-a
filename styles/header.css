@@ -1,1 +1,119 @@
+/* ==========================
+   HEADER CONTAINER
+========================== */
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background: white;
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* ==========================
+   TÍTULO + LOGO
+========================== */
+
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.titulo .logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--udp), var(--udp-light));
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 8px 20px rgba(155,24,49,0.25);
+}
+
+.titulo h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--udp);
+    margin-bottom: 2px;
+}
+
+.titulo p {
+    font-size: 11px;
+    opacity: 0.6;
+    letter-spacing: 2px;
+}
+
+/* ==========================
+   BOTONES ACCIONES
+========================== */
+
+.acciones {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.acciones button {
+    padding: 9px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all var(--transicion);
+}
+
+/* botón principal (modo oscuro) */
+#darkModeBtn {
+    background: var(--udp);
+    color: white;
+}
+
+#darkModeBtn:hover {
+    background: var(--udp-dark);
+}
+
+/* botones secundarios */
+#exportBtn,
+#importBtn,
+#resetBtn {
+    background: white;
+    border: 1px solid var(--borde);
+}
+
+#exportBtn:hover,
+#importBtn:hover,
+#resetBtn:hover {
+    border-color: var(--udp);
+    transform: translateY(-2px);
+}
+
+/* ==========================
+   RESPONSIVE HEADER
+========================== */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .acciones {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .titulo h1 {
+        font-size: 18px;
+    }
+
+}

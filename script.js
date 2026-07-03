@@ -104,6 +104,21 @@ function toggleRamo(ramo) {
         lanzarConfeti();
     }
 
+   document.querySelectorAll(".ramo").forEach(r => {
+    if (r.dataset.id === ramo.id) return;
+
+    if (r.classList.contains("bloqueado") && cumpleRequisitos(
+        malla.flatMap(a => a.semestres.flatMap(s => s.ramos))
+        .find(x => x.id === r.dataset.id)
+    )) {
+        r.classList.add("desbloqueando");
+
+        setTimeout(() => {
+            r.classList.remove("desbloqueando");
+        }, 600);
+    }
+});
+   
     guardar();
     renderMalla();
 }

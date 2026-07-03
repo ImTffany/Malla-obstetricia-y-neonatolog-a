@@ -208,17 +208,24 @@ function mostrarModal(ramo) {
    BOTONES
 ========================== */
 
-document.getElementById("resetBtn").addEventListener("click", () => {
-    if (confirm("¿Seguro que quieres reiniciar toda la malla?")) {
-        localStorage.removeItem("mallaEstado");
-        estado = {};
-        renderMalla();
-    }
-});
+const resetBtn = document.getElementById("resetBtn");
+const darkBtn = document.getElementById("darkModeBtn");
 
-document.getElementById("darkModeBtn").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-});
+if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+        if (confirm("¿Seguro que quieres reiniciar toda la malla?")) {
+            localStorage.removeItem("mallaEstado");
+            estado = {};
+            renderMalla();
+        }
+    });
+}
+
+if (darkBtn) {
+    darkBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+    });
+}
 
 /* ==========================
    INIT

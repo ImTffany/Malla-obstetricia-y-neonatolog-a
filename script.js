@@ -24,10 +24,12 @@ function buscarRamoPorId(id) {
    RENDER MALLA
 ========================== */
 
-const contenedor = document.getElementById("malla");
+let contenedor;
 
-function renderMalla() {
-
+document.addEventListener("DOMContentLoaded", () => {
+    contenedor = document.getElementById("malla");
+    renderMalla();
+});
     contenedor.innerHTML = "";
 
     malla.forEach(anio => {
@@ -230,5 +232,3 @@ if (darkBtn) {
 /* ==========================
    INIT
 ========================== */
-
-renderMalla();

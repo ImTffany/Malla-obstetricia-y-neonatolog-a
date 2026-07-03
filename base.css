@@ -1,1 +1,171 @@
+/* ==========================
+   BASE GENERAL
+========================== */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: var(--fondo);
+    color: var(--texto);
+    transition: background var(--transicion), color var(--transicion);
+}
+
+/* ==========================
+   HEADER GLOBAL
+========================== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: white;
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.titulo h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--udp);
+    letter-spacing: 1px;
+}
+
+.titulo p {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+button {
+    border: none;
+    padding: 10px 14px;
+    border-radius: var(--radio);
+    cursor: pointer;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all var(--transicion);
+    font-weight: 500;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* botones principales */
+#darkModeBtn {
+    background: var(--udp);
+    color: white;
+}
+
+#exportBtn, #importBtn, #resetBtn {
+    background: white;
+}
+
+/* ==========================
+   ESTADÍSTICAS
+========================== */
+
+.estadisticas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 20px 30px;
+}
+
+.card-estadistica {
+    background: white;
+    padding: 15px;
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+.card-estadistica h3 {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 8px;
+}
+
+.card-estadistica span {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--udp);
+}
+
+/* ==========================
+   BARRA DE PROGRESO
+========================== */
+
+.barra-progreso {
+    padding: 0 30px;
+    margin-bottom: 15px;
+}
+
+.barra {
+    width: 100%;
+    height: 10px;
+    background: #eee;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+#progresoBarra {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--udp), var(--udp-light));
+    transition: width 0.4s ease;
+}
+
+/* ==========================
+   INPUT BUSCADOR
+========================== */
+
+.filtros {
+    padding: 10px 30px;
+}
+
+#buscador {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: var(--radio);
+    border: 1px solid var(--borde);
+    outline: none;
+    transition: var(--transicion);
+}
+
+#buscador:focus {
+    border-color: var(--udp);
+    box-shadow: 0 0 0 3px rgba(155,24,49,0.1);
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    opacity: 0.5;
+}

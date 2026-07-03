@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Malla Interactiva | Obstetricia UDP</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Mantendremos una tipografía similar a la original -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="titulo">
+
+        <div class="logo">
+            🤰
+        </div>
+
+        <div>
+
+            <h1>OBSTETRICIA UDP</h1>
+
+            <p>MALLA INTERACTIVA</p>
+
+        </div>
+
+    </div>
+
+    <div class="acciones">
+
+        <button id="darkModeBtn">
+            🌙 Modo oscuro
+        </button>
+
+        <button id="exportBtn">
+            Exportar
+        </button>
+
+        <button id="importBtn">
+            Importar
+        </button>
+
+        <button id="resetBtn">
+            Reiniciar
+        </button>
+
+    </div>
+
+</header>
+
+
+<section class="estadisticas">
+
+    <div class="card-estadistica">
+
+        <h3>Ramos aprobados</h3>
+
+        <span id="ramosAprobados">
+            0 / 48
+        </span>
+
+    </div>
+
+    <div class="card-estadistica">
+
+        <h3>Créditos aprobados</h3>
+
+        <span id="creditos">
+            0 / 267
+        </span>
+
+    </div>
+
+    <div class="card-estadistica">
+
+        <h3>Progreso</h3>
+
+        <span id="porcentaje">
+            0%
+        </span>
+
+    </div>
+
+    <div class="card-estadistica">
+
+        <h3>Años completos</h3>
+
+        <span id="anios">
+            0 / 5
+        </span>
+
+    </div>
+
+    <div class="card-estadistica">
+
+        <h3>Licenciatura</h3>
+
+        <span id="licenciatura">
+            En progreso
+        </span>
+
+    </div>
+
+</section>
+
+
+<section class="barra-progreso">
+
+    <div class="barra">
+
+        <div id="progresoBarra"></div>
+
+    </div>
+
+</section>
+
+
+<section class="filtros">
+
+    <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar ramo...">
+
+</section>
+
+
+<!-- AQUÍ SE GENERARÁ TODA LA MALLA -->
+
+<main id="malla"></main>
+
+
+<div id="toast"></div>
+
+<div id="modalBloqueado" class="hidden"></div>
+
+<button id="btnTop">
+
+    ↑
+
+</button>
+
+
+<footer>
+
+    Malla Interactiva Obstetricia UDP
+
+</footer>
+
+
+<script src="datos.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

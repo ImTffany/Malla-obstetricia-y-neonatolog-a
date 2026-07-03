@@ -6,6 +6,21 @@
 let estado = JSON.parse(localStorage.getItem("mallaEstado")) || {};
 
 /* ==========================
+   UTILIDAD
+========================== */
+
+function buscarRamoPorId(id) {
+    for (const anio of malla) {
+        for (const sem of anio.semestres) {
+            for (const r of sem.ramos) {
+                if (r.id === id) return r;
+            }
+        }
+    }
+    return null;
+}
+
+/* ==========================
    RENDER MALLA
 ========================== */
 
@@ -44,7 +59,6 @@ function renderMalla() {
                 ramoDiv.dataset.id = ramo.id;
                 ramoDiv.textContent = ramo.nombre;
 
-                // estado inicial
                 if (estado[ramo.id]) {
                     ramoDiv.classList.add("aprobado");
                 } else if (!cumpleRequisitos(ramo)) {
@@ -53,11 +67,9 @@ function renderMalla() {
                     ramoDiv.classList.add("pendiente");
                 }
 
-                // click
                 ramoDiv.addEventListener("click", () => toggleRamo(ramo));
 
                 semDiv.appendChild(ramoDiv);
-
             });
 
             semestresDiv.appendChild(semDiv);
@@ -77,7 +89,6 @@ function renderMalla() {
 ========================== */
 
 function cumpleRequisitos(ramo) {
-
     return ramo.prereq.every(id => estado[id]);
 }
 
@@ -100,25 +111,9 @@ function toggleRamo(ramo) {
         }
 
         estado[ramo.id] = true;
-
         lanzarConfeti();
     }
 
-   document.querySelectorAll(".ramo").forEach(r => {
-    if (r.dataset.id === ramo.id) return;
-
-    if (r.classList.contains("bloqueado") && cumpleRequisitos(
-        malla.flatMap(a => a.semestres.flatMap(s => s.ramos))
-        .find(x => x.id === r.dataset.id)
-    )) {
-        r.classList.add("desbloqueando");
-
-        setTimeout(() => {
-            r.classList.remove("desbloqueando");
-        }, 600);
-    }
-});
-   
     guardar();
     renderMalla();
 }
@@ -132,7 +127,7 @@ function guardar() {
 }
 
 /* ==========================
-   PROGRESO
+   UI
 ========================== */
 
 function actualizarUI() {
@@ -144,7 +139,6 @@ function actualizarUI() {
 
     document.getElementById("porcentaje").textContent = porcentaje + "%";
     document.getElementById("ramosAprobados").textContent = `${aprobados} / ${total}`;
-
     document.getElementById("progresoBarra").style.width = porcentaje + "%";
 }
 
@@ -182,13 +176,11 @@ function mostrarToast(msg) {
     toast.textContent = msg;
     toast.classList.add("show");
 
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2000);
+    setTimeout(() => toast.classList.remove("show"), 2000);
 }
 
 /* ==========================
-   MODAL BLOQUEADO
+   MODAL
 ========================== */
 
 function mostrarModal(ramo) {
@@ -200,32 +192,32 @@ function mostrarModal(ramo) {
             <h3>Ramo bloqueado</h3>
             <p>Necesitas aprobar:</p>
             <ul>
-                ${ramo.prereq.map(id => `<li>${id}</li>`).join("")}
+                ${ramo.prereq.map(id => {
+                    const r = buscarRamoPorId(id);
+                    return `<li>${r ? r.nombre : id}</li>`;
+                }).join("")}
             </ul>
         </div>
     `;
 
     modal.classList.add("show");
-
     modal.onclick = () => modal.classList.remove("show");
 }
 
 /* ==========================
-   BOTÓN VOLVER ARRIBA
+   BOTONES
 ========================== */
 
-const btnTop = document.getElementById("btnTop");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-        btnTop.style.display = "block";
-    } else {
-        btnTop.style.display = "none";
+document.getElementById("resetBtn").addEventListener("click", () => {
+    if (confirm("¿Seguro que quieres reiniciar toda la malla?")) {
+        localStorage.removeItem("mallaEstado");
+        estado = {};
+        renderMalla();
     }
 });
 
-btnTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+document.getElementById("darkModeBtn").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
 });
 
 /* ==========================
@@ -233,6 +225,7 @@ btnTop.addEventListener("click", () => {
 ========================== */
 
 renderMalla();
+
 
 function buscarRamoPorId(id) {
     for (const anio of malla) {

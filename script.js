@@ -225,31 +225,3 @@ document.getElementById("darkModeBtn").addEventListener("click", () => {
 ========================== */
 
 renderMalla();
-
-
-function buscarRamoPorId(id) {
-    for (const anio of malla) {
-        for (const sem of anio.semestres) {
-            for (const r of sem.ramos) {
-                if (r.id === id) return r;
-            }
-        }
-    }
-    return null;
-}
-${ramo.prereq.map(id => {
-    const r = buscarRamoPorId(id);
-    return `<li>${r ? r.nombre : id}</li>`;
-}).join("")}
-
-document.getElementById("resetBtn").addEventListener("click", () => {
-    if (confirm("¿Seguro que quieres reiniciar toda la malla?")) {
-        localStorage.removeItem("mallaEstado");
-        estado = {};
-        renderMalla();
-    }
-});
-
-document.getElementById("darkModeBtn").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-});

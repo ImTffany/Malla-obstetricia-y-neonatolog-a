@@ -1,1 +1,102 @@
 
+/* ==========================
+   CONTENEDOR PRINCIPAL
+========================== */
+
+#malla {
+    padding: 20px 30px;
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    align-items: flex-start;
+}
+
+/* ==========================
+   AÑOS
+========================== */
+
+.anio {
+    min-width: 320px;
+    background: #fafafa;
+    border-radius: var(--radio);
+    padding: 15px;
+    box-shadow: var(--sombra);
+}
+
+/* encabezado del año */
+.anio h2 {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--udp);
+    letter-spacing: 2px;
+}
+
+/* división semestres */
+.semestres {
+    display: flex;
+    gap: 12px;
+}
+
+/* ==========================
+   SEMESTRES
+========================== */
+
+.semestre {
+    flex: 1;
+    background: white;
+    border-radius: var(--radio);
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* título semestre */
+.semestre h3 {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* ==========================
+   EFECTO AÑO COMPLETADO
+========================== */
+
+.anio.completo {
+    border: 2px solid var(--udp);
+    animation: brilloAnio 1.2s ease;
+}
+
+@keyframes brilloAnio {
+    0% {
+        box-shadow: 0 0 0 rgba(155,24,49,0);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(155,24,49,0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 rgba(155,24,49,0);
+    }
+}
+
+/* ==========================
+   RESPONSIVE (base estructura)
+========================== */
+
+@media (max-width: 900px) {
+
+    #malla {
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .anio {
+        min-width: 100%;
+    }
+
+    .semestres {
+        flex-direction: column;
+    }
+}

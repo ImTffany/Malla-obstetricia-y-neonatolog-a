@@ -30,10 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
     contenedor = document.getElementById("malla");
     renderMalla();
 });
+   
+function renderMalla() {
+
     contenedor.innerHTML = "";
 
     malla.forEach(anio => {
+        ...
+    });
 
+}
         const anioDiv = document.createElement("div");
         anioDiv.classList.add("anio");
 

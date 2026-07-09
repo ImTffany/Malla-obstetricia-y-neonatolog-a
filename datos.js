@@ -1,4 +1,4 @@
-const malla = [
+window.malla = [
 
 /* ==========================
    AÑO 1

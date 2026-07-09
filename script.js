@@ -37,13 +37,58 @@ function renderMalla() {
 
     malla.forEach(anio => {
 
-        ...
+        const anioDiv = document.createElement("div");
+        anioDiv.classList.add("anio");
+
+        const tituloAnio = document.createElement("h2");
+        tituloAnio.textContent = `AÑO ${anio.anio}`;
+
+        const semestresDiv = document.createElement("div");
+        semestresDiv.classList.add("semestres");
+
+        anio.semestres.forEach(sem => {
+
+            const semDiv = document.createElement("div");
+            semDiv.classList.add("semestre");
+
+            const tituloSem = document.createElement("h3");
+            tituloSem.textContent = sem.nombre;
+
+            semDiv.appendChild(tituloSem);
+
+            sem.ramos.forEach(ramo => {
+
+                const ramoDiv = document.createElement("div");
+                ramoDiv.classList.add("ramo");
+
+                ramoDiv.dataset.id = ramo.id;
+                ramoDiv.textContent = ramo.nombre;
+
+                if (estado[ramo.id]) {
+                    ramoDiv.classList.add("aprobado");
+                } else if (!cumpleRequisitos(ramo)) {
+                    ramoDiv.classList.add("bloqueado");
+                } else {
+                    ramoDiv.classList.add("pendiente");
+                }
+
+                ramoDiv.addEventListener("click", () => toggleRamo(ramo));
+
+                semDiv.appendChild(ramoDiv);
+            });
+
+            semestresDiv.appendChild(semDiv);
+        });
+
+        anioDiv.appendChild(tituloAnio);
+        anioDiv.appendChild(semestresDiv);
+
+        contenedor.appendChild(anioDiv);
 
     });
 
     actualizarUI();
 }
-        const anioDiv = document.createElement("div");
         anioDiv.classList.add("anio");
 
         const tituloAnio = document.createElement("h2");

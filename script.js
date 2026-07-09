@@ -36,9 +36,12 @@ function renderMalla() {
     contenedor.innerHTML = "";
 
     malla.forEach(anio => {
+
         ...
+
     });
 
+    actualizarUI();
 }
         const anioDiv = document.createElement("div");
         anioDiv.classList.add("anio");
